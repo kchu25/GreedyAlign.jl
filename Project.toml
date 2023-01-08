@@ -14,6 +14,13 @@ StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 
 [compat]
 julia = "1.8.2"
+CUDA = "3.12.1"
+DataStructures = "0.18.13"
+Distributions = "0.25.79"
+DoubleFloats = "1.2.2"
+HypothesisTests = "0.10.11"
+JLD2 = "0.4.29"
+StaticArrays = "1.5.12"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
