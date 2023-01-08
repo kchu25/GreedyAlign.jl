@@ -1,7 +1,7 @@
 module GreedyAlign
 #
 using Distributions, HypothesisTests, StaticArrays,
-      DataStructures, DoubleFloats
+      DataStructures, DoubleFloats, JLD2
 
 using CUDA # TODO: is there a way to prevent loading this twice?
 

@@ -37,3 +37,39 @@ function obtain_PWMs(Z::Array{float_type, 3}, data, flen)::motifs
                                         );
             return ms
 end
+
+function save_motifs(ms::motifs; save_loc=nothing, discovered_folder_name = "discovered_motifs")
+    where2save = nothing
+    if isnothing(save_loc)
+        where2save = joinpath(pwd(), discovered_folder_name)
+    else
+        where2save = joinpath(save_loc, discovered_folder_name)
+    end
+    mkpath(where2save)
+    @save joinpath(where2save, "motifs.jld2") ms
+end
+
+"""
+Save the discovered motifs in the joinpath(JLD2path, "discovered_motifs") folder
+    - If JLD2path is not provided, then the motifs are saved in the current directory.
+"""
+function obtain_PWMs_from_JLD2(;JLD2path=nothing, save_motif_as_JLD2=false)
+    saved_loc = isnothing(JLD2path) ? joinpath(pwd(), "sparse_rep") : joinpath(JLD2path, "sparse_rep");
+    # filter_path      = joinpath(save_loc, "filters.jld2")
+    data_path        = joinpath(saved_loc, "data.jld2")
+    sparse_code_path = joinpath(saved_loc, "sparse_code.jld2")
+    filterlen_path   = joinpath(saved_loc, "filterlen.jld2")
+    if isfile(data_path) && isfile(sparse_code_path) && isfile(filterlen_path)
+        @load joinpath(saved_loc, "data.jld2") data
+        @load joinpath(saved_loc, "sparse_code.jld2") Z
+        @load joinpath(saved_loc, "filterlen.jld2") f
+        ms = obtain_PWMs(Z, data, f);
+        if save_motif_as_JLD2
+            save_motifs(ms; save_loc=JLD2path)
+        else
+            return ms
+        end        
+    else
+        error("The required files are not present in the directory $JLD2path.")
+    end
+end
