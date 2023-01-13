@@ -19,40 +19,10 @@ function percentile_thresh_Z_nz(Z_nz; percentile= 0.0055)
     return Z_nz_sorted[ind]
 end
     
-# function get_strs(data, pos, k)
-#     strs = Vector{String}()
-#     for (range_, n) in pos[k]
-#         push!(strs, data.raw_data[n][range_])
-#     end
-#     return strs
-# end
-
-# function get_strs(data, pos_ki)
-#     strs = Vector{String}()
-#     for (range_, n) in pos_ki
-#         push!(strs, data.raw_data[n][range_])
-#     end
-#     return strs
-# end
-
-# function get_strs_ignore_out_of_range(data, pos_ki)
-#     strs = Vector{String}()
-#     for (range_, n, use_comp) in pos_ki
-#         if (range_[1] > 0 && range_[end] ≤ data.L) 
-#             if use_comp
-#                 push!(strs, dna_comp(data.raw_data[n][range_]))
-#             else
-#                 push!(strs, data.raw_data[n][range_])
-#             end
-#         end
-#     end
-#     return strs
-# end
-
 function get_strs(data, pos, k)
     strs = Vector{String}()
     for (range_, n) in pos[k]
-        push!(strs, data.raw_data[n].str[range_])
+        push!(strs, data.raw_data[n][range_])
     end
     return strs
 end
@@ -60,7 +30,7 @@ end
 function get_strs(data, pos_ki)
     strs = Vector{String}()
     for (range_, n) in pos_ki
-        push!(strs, data.raw_data[n].str[range_])
+        push!(strs, data.raw_data[n][range_])
     end
     return strs
 end
@@ -70,11 +40,41 @@ function get_strs_ignore_out_of_range(data, pos_ki)
     for (range_, n, use_comp) in pos_ki
         if (range_[1] > 0 && range_[end] ≤ data.L) 
             if use_comp
-                push!(strs, dna_comp(data.raw_data[n].str[range_]))
+                push!(strs, dna_comp(data.raw_data[n][range_]))
             else
-                push!(strs, data.raw_data[n].str[range_])
+                push!(strs, data.raw_data[n][range_])
             end
         end
     end
     return strs
 end
+
+# function get_strs(data, pos, k)
+#     strs = Vector{String}()
+#     for (range_, n) in pos[k]
+#         push!(strs, data.raw_data[n].str[range_])
+#     end
+#     return strs
+# end
+
+# function get_strs(data, pos_ki)
+#     strs = Vector{String}()
+#     for (range_, n) in pos_ki
+#         push!(strs, data.raw_data[n].str[range_])
+#     end
+#     return strs
+# end
+
+# function get_strs_ignore_out_of_range(data, pos_ki)
+#     strs = Vector{String}()
+#     for (range_, n, use_comp) in pos_ki
+#         if (range_[1] > 0 && range_[end] ≤ data.L) 
+#             if use_comp
+#                 push!(strs, dna_comp(data.raw_data[n].str[range_]))
+#             else
+#                 push!(strs, data.raw_data[n].str[range_])
+#             end
+#         end
+#     end
+#     return strs
+# end

@@ -37,11 +37,11 @@ get_expand_ind_right(p, inc) = p[1][end]+inc;
 get_shrink_ind_left(p, inc)  = p[1][1]+inc;
 get_shrink_ind_right(p, dec) = p[1][end]-dec;
 
-count_vec_at_pos(p, data, char_ind) = char_ind < 1 || char_ind > data.L ? 
-    atcg2dummy['z'] : atcg2dummy[data.raw_data[p[2]].str[char_ind]]
-
 # count_vec_at_pos(p, data, char_ind) = char_ind < 1 || char_ind > data.L ? 
-#     atcg2dummy['z'] : atcg2dummy[data.raw_data[p[2]][char_ind]]
+#     atcg2dummy['z'] : atcg2dummy[data.raw_data[p[2]].str[char_ind]]
+
+count_vec_at_pos(p, data, char_ind) = char_ind < 1 || char_ind > data.L ? 
+    atcg2dummy['z'] : atcg2dummy[data.raw_data[p[2]][char_ind]]
 
 function left_expansion(data, pos_ki, dec; ic_expand_thresh=0.5, pc=1.0, tol=0.975)
     count_vec = @SVector zeros(Float64, 4)

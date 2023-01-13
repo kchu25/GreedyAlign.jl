@@ -1,7 +1,7 @@
 name = "GreedyAlign"
 uuid = "e9a496d4-a0ac-4054-a7cc-e43b6064761e"
 authors = ["Shane Kuei-Hsien Chu (skchu@wustl.edu)"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 CUDA = "052768ef-5323-5732-b1bb-66c8b64840ba"

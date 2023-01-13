@@ -1,12 +1,12 @@
-# get_char(data, p, char_ind, comp) =
-#         comp ?
-#             atcg2dummy[ atcg_comp[data.raw_data[p[2]][char_ind]] ] :
-#             atcg2dummy[ data.raw_data[p[2]][char_ind] ]
-
 get_char(data, p, char_ind, comp) =
-    comp ?
-        atcg2dummy[ atcg_comp[data.raw_data[p[2]].str[char_ind]] ] :
-        atcg2dummy[ data.raw_data[p[2]].str[char_ind] ]            
+        comp ?
+            atcg2dummy[ atcg_comp[data.raw_data[p[2]][char_ind]] ] :
+            atcg2dummy[ data.raw_data[p[2]][char_ind] ]
+
+# get_char(data, p, char_ind, comp) =
+#     comp ?
+#         atcg2dummy[ atcg_comp[data.raw_data[p[2]].str[char_ind]] ] :
+#         atcg2dummy[ data.raw_data[p[2]].str[char_ind] ]            
             
 count_vec_at_pos_ms(p, data, char_ind, comp) = 
     char_ind < 1 || char_ind > data.L ? 

@@ -72,7 +72,7 @@ end
 
 function overlapping_scan_bg!(ms::motifs, data; test=false)
     data_matrix_bg = test ? data.data_matrix_bg_test : data.data_matrix_bg;
-
+    
     p, s, u = motifs_prep(ms);
     @inbounds for k = 1:ms.num_motifs   
         pwm_comp_k = mat_complement(ms.pwms[k]);      
